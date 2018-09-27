@@ -60,4 +60,7 @@ typings/
 # next.js build output
 .next
 
+frontend/.cache/
 frontend/dist/
+
+build/
