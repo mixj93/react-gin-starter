@@ -10,10 +10,13 @@ frontend-build:
 backend-run:
 	cd backend && go run main.go
 
-backend-build:
+backend-local-build:
 	cd backend && go build main.go
 
-build-all: frontend-install frontend-build backend-build
+backend-cross-build:
+	cd backend && GOOS=linux  GOARCH=amd64 CGO_ENABLED=0 go build main.go
+
+build-cross: frontend-install frontend-build backend-cross-build
 	rm -rf build
 	mkdir build
 	mv backend/main build
