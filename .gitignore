@@ -63,4 +63,6 @@ typings/
 frontend/.cache/
 frontend/dist/
 
+backend/main
+
 build/
