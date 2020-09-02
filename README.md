@@ -1,6 +1,6 @@
 # React Gin Starter
 
-Web starter kit using: React, less, parcel at frontend and golang, gin at backend.
+Web starter kit using: React at frontend and golang, gin at backend.
 
 ## Development
 
@@ -22,7 +22,9 @@ $ make backend-run
 ## Build
 
 ```bash
-$ make build-all
+$ make build-local
+# For Linux
+$ make build-cross
 ```
 
 Then run ./build/main, website will be served on port 5678.

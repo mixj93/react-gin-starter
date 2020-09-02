@@ -1,24 +1,29 @@
 frontend-install:
-	cd frontend && npm i
+	cd frontend && yarn install
 
 frontend-run:
-	cd frontend && npm start
+	cd frontend && yarn start
 
 frontend-build:
-	cd frontend && npm run build
+	cd frontend && yarn run build
 
 backend-run:
-	cd backend && go run main.go
+	cd backend && go run cmd/main.go --dev --debug
 
 backend-local-build:
-	cd backend && go build main.go
+	cd backend && go build cmd/main.go
 
 backend-cross-build:
-	cd backend && GOOS=linux  GOARCH=amd64 CGO_ENABLED=0 go build main.go
+	cd backend && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build cmd/main.go
+
+build-local: frontend-install frontend-build backend-local-build
+	rm -rf build
+	mkdir build
+	mv backend/main build
+	mv frontend/build build/dist
 
 build-cross: frontend-install frontend-build backend-cross-build
 	rm -rf build
 	mkdir build
 	mv backend/main build
-	mv frontend/dist build
-	mv build/dist/static/index.html build/dist
+	mv frontend/build build/dist
